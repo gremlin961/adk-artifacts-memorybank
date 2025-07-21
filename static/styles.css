@@ -1,0 +1,210 @@
+/* Global Resets and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%; /* Crucial for full-height flex layout */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Light gray background for the page */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* App Container - Manages overall layout and appearance */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    max-width: 900px; /* Max width for readability */
+    width: 95%; /* Responsive width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    background-color: #ffffff; /* White background for content area */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px; /* Slightly rounded corners for the container (optional) */
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    color: #1a73e8; /* A nice blue, adjust as needed */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+/* Messages Area - Dynamic Sizing */
+#messages {
+    flex-grow: 1; /* This makes the div take available vertical space! */
+    overflow-y: auto; /* Keep scrollbar for overflow */
+    border: 1px solid #d1d5db; /* Lighter border */
+    padding: 15px;
+    background-color: #f9fafb; /* Slightly off-white for messages background */
+    border-radius: 6px;
+    margin-bottom: 20px; /* Space before the form */
+}
+
+/* Styling for individual messages */
+#messages p {
+    margin-bottom: 12px; /* Space between messages */
+    padding: 10px 12px;
+    border-radius: 5px;
+    word-wrap: break-word; /* Prevent long strings from breaking layout */
+}
+
+/* User message specific styling */
+.user-message-display { /* Style for <p> generated in JS */
+    background-color: #e0f2fe; /* Light blue background for user messages */
+    border-left: 4px solid #0ea5e9; /* Accent border */
+}
+.user-message-display strong { /* "You:" prefix */
+    color: #0369a1;
+}
+
+/* Agent message specific styling */
+.agent-message-display { /* Style for <p> generated in JS */
+    background-color: #f3f4f6; /* Light gray for agent messages */
+    border-left: 4px solid #6b7280;
+}
+
+/* Status Messages (Connection open/closed, errors) */
+.status-message {
+    font-style: italic;
+    text-align: center;
+    color: #555;
+    background-color: transparent !important; /* Override other p backgrounds */
+    border: none !important; /* Override other p borders */
+    padding: 5px 0 !important;
+    margin-bottom: 5px !important;
+}
+
+.error-message {
+    color: #dc2626; /* Red for errors */
+    font-weight: bold;
+}
+
+.interrupted-text {
+    font-style: italic;
+    color: #9ca3af; /* Lighter grey for interrupted text */
+    font-size: 0.9em;
+}
+
+
+/* Markdown specific styles inside #messages */
+#messages code {
+    background-color: #e5e7eb; /* Lighter than pre */
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 3px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+#messages pre {
+    background-color: #1f2937; /* Dark background for code blocks */
+    color: #d1d5db; /* Light text for code blocks */
+    padding: 12px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.9em;
+    line-height: 1.45;
+}
+#messages pre code { /* Reset code style inside pre */
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    border-radius: 0;
+    color: inherit;
+}
+
+
+#messages blockquote {
+    border-left: 4px solid #9ca3af; /* More distinct blockquote */
+    padding-left: 15px;
+    margin-left: 0;
+    color: #4b5563; /* Darker text for blockquote */
+    font-style: italic;
+}
+
+#messages ul,
+#messages ol {
+    margin-left: 25px; /* More indentation for lists */
+    padding-left: 5px;
+}
+#messages li {
+    margin-bottom: 0.3em;
+}
+
+
+/* Form Styling */
+#messageForm {
+    display: flex; /* Align items in a row */
+    gap: 10px; /* Space between input and button */
+    align-items: center; /* Vertically align items */
+    padding-top: 10px; /* Add some space if #messages content is short */
+    border-top: 1px solid #e5e7eb; /* Subtle separator */
+    flex-shrink: 0; /* Prevent form from shrinking */
+}
+
+#messageForm label {
+    display: none; /* Hide label visually, but keep for accessibility */
+}
+
+#messageForm input[type="text"] {
+    flex-grow: 1; /* Input takes available space */
+    padding: 10px 12px;
+    border: 1px solid #cdd2d8;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+#messageForm input[type="text"]:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    outline: none;
+}
+
+#messageForm button {
+    padding: 10px 18px;
+    background-color: #1a73e8; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#messageForm button:hover:not(:disabled) {
+    background-color: #1558b8; /* Darker shade on hover */
+}
+
+#messageForm button:disabled {
+    background-color: #b0bec5; /* Muted color when disabled */
+    cursor: not-allowed;
+}
+
+/* Optional: Add some subtle scrollbar styling for Webkit browsers */
+#messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 6px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}

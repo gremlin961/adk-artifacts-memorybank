@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ADK Chat App</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- For better mobile responsiveness -->
+  </head>
+
+  <body>
+    <div class="app-container">
+        <h1>ADK Chat App</h1>
+        <div id="messages">
+            <!-- Messages will be appended here -->
+        </div>
+        <form id="messageForm">
+          <label for="messageInput">Message:</label>
+          <input type="text" id="messageInput" name="message" placeholder="Type your message..."/>
+          <button type="submit" id="sendButton" disabled>Send</button>
+        </form>
+    </div>
+    <script src="/static/script.js" defer></script>
+  </body>
+</html>
