@@ -36,6 +36,8 @@ from status_messenger import setup_status_messenger_async, stream_status_updates
 from chat_agent.agent import root_agent # Using the agent from chat_agent
 # Configure basic logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.getLogger('google_genai._api_client').setLevel(logging.WARNING)
+logging.getLogger('httpx').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 #---- Change these variables to match your project -----------
